@@ -234,6 +234,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://willxue.top/2017/11/23/2017-11-23-map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liergou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李二狗的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/23/2017-11-23-map/" itemprop="url">关于vue中引入地图API的封装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-23T18:51:33+08:00">
+                2017-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="将方法封装到一个js文件中，最后哪个路由调用地图API，将这个js文件import进去就好"><a href="#将方法封装到一个js文件中，最后哪个路由调用地图API，将这个js文件import进去就好" class="headerlink" title="将方法封装到一个js文件中，最后哪个路由调用地图API，将这个js文件import进去就好"></a>将方法封装到一个js文件中，最后哪个路由调用地图API，将这个js文件import进去就好</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var WeiXin = &#123;</span><br><span class="line">    init()&#123;</span><br><span class="line">        return new Promise(function (resolve, reject) &#123;</span><br><span class="line">            var script = document.createElement(&quot;script&quot;);</span><br><span class="line">            script.type = &quot;text/javascript&quot;;</span><br><span class="line">            script.src = &quot;http://res.wx.qq.com/open/js/jweixin-1.2.0.js&quot;</span><br><span class="line">            document.head.appendChild(script);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function Map(key) &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        window.init = function () &#123;</span><br><span class="line">            resolve(qq)//注意这里</span><br><span class="line">        &#125;</span><br><span class="line">        var script = document.createElement(&quot;script&quot;);</span><br><span class="line">        script.type = &quot;text/javascript&quot;;</span><br><span class="line">        script.src = &quot;http://map.qq.com/api/js?v=2.exp&amp;callback=init&amp;key=&quot; + key + &apos;&amp;libraries=drawing,geometry,autocomplete,convertor&apos;;</span><br><span class="line">        script.onerror = reject;</span><br><span class="line">        document.head.appendChild(script);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    WeiXin: WeiXin,</span><br><span class="line">    Map: Map</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法调用案例"><a href="#方法调用案例" class="headerlink" title="方法调用案例"></a>方法调用案例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    import &#123;Map&#125; from &apos;map&apos;</span><br><span class="line">    import &#123;WeiXin&#125; from &apos;map&apos;</span><br><span class="line"></span><br><span class="line">    export default&#123;</span><br><span class="line">        name: &apos;report&apos;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            initMap(latitude, longitude)&#123;</span><br><span class="line">                //获取用户经纬度</span><br><span class="line">                Map(&apos;EM6BZ-HBPWP-DV7DO-LOSBA-PBT3H-D2B2G&apos;).then(qq =&gt; &#123;</span><br><span class="line">                    var geocoder = new qq.maps.Geocoder(&#123;</span><br><span class="line">                        complete: function (result) &#123;</span><br><span class="line">                            var address = result.detail.address;  //保存result的详细地址信息</span><br><span class="line">                            alert(result.detail.nearPois[0]);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                    geocoder.getAddress(new qq.maps.LatLng(latitude, longitude));</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            getWxLocation()&#123;</span><br><span class="line">                //根据经纬度获取地理位置</span><br><span class="line">                var url = window.location.href.split(&apos;#&apos;)[0];</span><br><span class="line">                WxService.getConfig(url).then(res =&gt; &#123;</span><br><span class="line">                    var result = res.data;</span><br><span class="line">                    if (wx) &#123;</span><br><span class="line">                        wx.config(&#123;</span><br><span class="line">                            debug: true,</span><br><span class="line">                            appId: result.appId,</span><br><span class="line">                            timestamp: result.timestamp,</span><br><span class="line">                            nonceStr: result.noncestr,</span><br><span class="line">                            signature: result.signature,</span><br><span class="line">                            jsApiList: [&apos;getLocation&apos;]</span><br><span class="line">                        &#125;);</span><br><span class="line">                        wx.getLocation(&#123;</span><br><span class="line">                            success: function (res) &#123;</span><br><span class="line">                                var result = JSON.stringify(res);</span><br><span class="line">                                this.initMap(res.latitude, res.longitude);</span><br><span class="line">                            &#125;,</span><br><span class="line">                            cancel: function (res) &#123;</span><br><span class="line">                                alert(&apos;用户拒绝授权获取地理位置&apos;);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, err =&gt; &#123;</span><br><span class="line">                    this.$onError(err);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">             </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        created()&#123;</span><br><span class="line">            WeiXin.init().then(function () &#123;</span><br><span class="line">                this.getWxLocation();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://willxue.top/2017/11/23/2017-11-23-loadmore/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -307,138 +427,12 @@
           
             <h1 id="借助mint-ui中的loadmore"><a href="#借助mint-ui中的loadmore" class="headerlink" title="借助mint-ui中的loadmore"></a>借助mint-ui中的loadmore</h1><blockquote>
 <p>参考文献：<a href="http://mint-ui.github.io/docs/#/zh-cn2/loadmore" target="_blank" rel="noopener">mint-ui的loadmore</a></p>
+<ul>
+<li>多说无益 直接上代码</li>
+</ul>
 </blockquote>
-<h2 id="多说无益-直接上代码"><a href="#多说无益-直接上代码" class="headerlink" title="多说无益 直接上代码"></a>多说无益 直接上代码</h2><h3 id="这些是组件的代码"><a href="#这些是组件的代码" class="headerlink" title="这些是组件的代码"></a>这些是组件的代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">	&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;loadmore&quot;&gt;</span><br><span class="line">        &lt;mt-loadmore ref=&quot;loadmore&quot; :auto-fill=&quot;false&quot; :bottom-all-loaded=&quot;allLoaded&quot; :top-method=&quot;loadTop&quot;</span><br><span class="line">                     :bottom-method=&quot;loadBottom&quot; @top-status-change=&quot;handleTopChange&quot; :top-status.sync=&quot;topStatus&quot;</span><br><span class="line">                     @bottom-status-change=&quot;handleBottomChange&quot; :bottom-status.sync=&quot;bottomStatus&quot; :bottom-distance=30&gt;</span><br><span class="line">            &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">            &lt;div slot=&quot;top&quot; class=&quot;mint-loadmore-top&quot;&gt;</span><br><span class="line">                &lt;span class=&apos;refresh refresh-top&apos; v-show=&quot;topStatus !== &apos;loading&apos;&quot;</span><br><span class="line">                      :class=&quot;&#123; &apos;is-rotate&apos;: topStatus === &apos;drop&apos; &#125;&quot;&gt;↑&lt;/span&gt;</span><br><span class="line">                &lt;span v-show=&quot;topStatus === &apos;loading&apos;&quot; class=&quot;mint-spinner-snake&quot;&gt;&lt;/span&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div slot=&quot;bottom&quot; class=&quot;mint-loadmore-bottom&quot;&gt;</span><br><span class="line">                &lt;span class=&apos;refresh refresh-bottom&apos; v-show=&quot;bottomStatus !== &apos;loading&apos;&amp;&amp;bottomStatus==&apos;drop&apos;&quot;</span><br><span class="line">                      :class=&quot;&#123; &apos;is-rotate&apos;: bottomStatus === &apos;drop&apos; &#125;&quot;&gt;下&lt;/span&gt;</span><br><span class="line">                &lt;span v-show=&quot;bottomStatus === &apos;loading&apos;&quot; class=&quot;mint-spinner-snake&quot;&gt;&lt;/span&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/mt-loadmore&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &apos;load-more&apos;,</span><br><span class="line">        props: [&apos;topService&apos;, &apos;bottomService&apos;],</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                topStatus: &apos;&apos;,</span><br><span class="line">                bottomStatus: &apos;&apos;,</span><br><span class="line">                allLoaded: false,</span><br><span class="line">                loadingStatus: &apos;&apos;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            handleTopChange(status) &#123;</span><br><span class="line">                this.topStatus = status;</span><br><span class="line">            &#125;,</span><br><span class="line">            handleBottomChange(status) &#123;</span><br><span class="line">                this.bottomStatus = status;</span><br><span class="line">            &#125;,</span><br><span class="line">            loadTop(params)&#123;</span><br><span class="line">                let vm = this;</span><br><span class="line">                vm.topService(params)</span><br><span class="line">                    .then(function (res) &#123;</span><br><span class="line">//                        setTimeout(() =&gt; &#123;  //这里可以通过延迟来控制loadding图标的显示时间</span><br><span class="line">                        vm.$refs.loadmore.onTopLoaded();</span><br><span class="line">//                        &#125;, 1500);</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .catch(function () &#123;</span><br><span class="line">                        vm.$refs.loadmore.onTopLoaded();</span><br><span class="line">                    &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">            loadBottom(params)&#123;</span><br><span class="line">                let vm = this;</span><br><span class="line">                vm.bottomService(params)</span><br><span class="line">                    .then(function (res) &#123;</span><br><span class="line">//                        setTimeout(() =&gt; &#123;</span><br><span class="line">                        if(res.data.last)&#123;</span><br><span class="line">                            vm.allLoaded = true;</span><br><span class="line">                        &#125;</span><br><span class="line">                        vm.$refs.loadmore.onBottomLoaded();</span><br><span class="line">//                        &#125;, 1500);</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .catch(function () &#123;</span><br><span class="line">                        vm.$refs.loadmore.onBottomLoaded();</span><br><span class="line">                    &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot; rel=&quot;stylesheet/scss&quot; scoped&gt;</span><br><span class="line">    .page-loadmore .mint-spinner &#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        vertical-align: middle;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .mint-loadmore-top span, .mint-loadmore-bottom span &#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        -webkit-transition: .2s linear;</span><br><span class="line">        transition: .2s linear;</span><br><span class="line">        vertical-align: middle</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .mint-loadmore-top span.is-rotate, .mint-loadmore-bottom span.is-rotate &#123;</span><br><span class="line">        -webkit-transform: rotate(180deg);</span><br><span class="line">        transform: rotate(180deg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .loadmore &#123;</span><br><span class="line">        overflow: scroll;</span><br><span class="line">        height: calc(100% - 46px);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .mint-spinner-snake &#123;</span><br><span class="line">        margin-top: 9px;</span><br><span class="line">        border-top-color: rgb(204, 204, 204);</span><br><span class="line">        border-left-color: rgb(204, 204, 204);</span><br><span class="line">        border-bottom-color: rgb(204, 204, 204);</span><br><span class="line">        height: 23px;</span><br><span class="line">        width: 23px;</span><br><span class="line">        -webkit-animation: mint-spinner-rotate .8s infinite linear;</span><br><span class="line">        animation: mint-spinner-rotate .8s infinite linear;</span><br><span class="line">        border-radius: 50%;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<p>###调用时的案例模块如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	   &lt;load-more v-on:loadTop=&quot;loadTop&quot; v-on:loadBottom=&quot;loadBottom&quot;</span><br><span class="line">                              v-bind:topService=&quot;getTopList&quot;</span><br><span class="line">                              v-bind:bottomService=&quot;getBotList&quot;&gt;</span><br><span class="line">                     	&lt;div v-for=&apos;item in list&apos;&gt;</span><br><span class="line">                     		&#123;&#123;item.name&#125;&#125;</span><br><span class="line">                     	&lt;/div&gt;</span><br><span class="line">                   &lt;/load-more&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	    import loadMore from &apos;load-more.vue&apos;</span><br><span class="line">	    import &#123;taskService from &apos;server&apos;</span><br><span class="line">	        export default&#123;</span><br><span class="line">					components: &#123;</span><br><span class="line">           			&apos;load-more&apos;: loadMore</span><br><span class="line">       			&#125;,</span><br><span class="line">		        methods: &#123;</span><br><span class="line">					async getTopList()&#123;</span><br><span class="line">		                this.unfinished_page = 0;</span><br><span class="line">		                return this.getUnfishedList();</span><br><span class="line">		            &#125;,</span><br><span class="line">		            async getBotList()&#123;</span><br><span class="line">		                return this.getUnfishedList(1);</span><br><span class="line">		            &#125;,</span><br><span class="line">		            getUnfishedList (params)&#123;</span><br><span class="line">		                var vm = this;</span><br><span class="line">		                if (params) &#123;</span><br><span class="line">		                    vm.unfinished_page += 1;</span><br><span class="line">		                &#125;</span><br><span class="line">		                //发送请求部分</span><br><span class="line">		                var promise = taskService.finishedTaskList(&#123;page: vm.unfinished_page, size: 10&#125;);</span><br><span class="line">		                promise.then(res =&gt; &#123;</span><br><span class="line">		                    if (params) &#123;</span><br><span class="line">		                        vm.list = vm.list.concat(res.data.content);</span><br><span class="line">		                    &#125; else &#123;</span><br><span class="line">		                        vm.list = res.data.content;</span><br><span class="line">		                    &#125;</span><br><span class="line">		                &#125;, err =&gt; &#123;</span><br><span class="line">		                   console.log(err)</span><br><span class="line">		                &#125;);</span><br><span class="line">		                this.$nextTick(function () &#123;</span><br><span class="line">		                    this.scrollMode = &quot;touch&quot;;</span><br><span class="line">		                &#125;);</span><br><span class="line">		                return promise;</span><br><span class="line">		            &#125;,</span><br><span class="line">		              loadTop(data)&#123;</span><br><span class="line">		                this.data = data;</span><br><span class="line">		             &#125;,</span><br><span class="line">		             loadBottom(data)&#123;</span><br><span class="line">		                this.data = this.data.concat(data);</span><br><span class="line">		             &#125;,</span><br><span class="line">			 	&#125;，</span><br><span class="line">			 	data()&#123;</span><br><span class="line">			 		return&#123;</span><br><span class="line">			 			list:[&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,]</span><br><span class="line">			 		&#125;</span><br><span class="line">			 	&#125;,</span><br><span class="line">			    created()&#123;</span><br><span class="line">			    	this.getTopList();</span><br><span class="line">			    &#125;</span><br><span class="line">			&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://willxue.top/2017/11/16/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liergou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李二狗的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/16/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-16T15:08:49+08:00">
-                2017-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+<h3 id="这些是组件的代码"><a href="#这些是组件的代码" class="headerlink" title="这些是组件的代码"></a>这些是组件的代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">	&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;loadmore&quot;&gt;</span><br><span class="line">        &lt;mt-loadmore ref=&quot;loadmore&quot; :auto-fill=&quot;false&quot; :bottom-all-loaded=&quot;allLoaded&quot; :top-method=&quot;loadTop&quot;</span><br><span class="line">                     :bottom-method=&quot;loadBottom&quot; @top-status-change=&quot;handleTopChange&quot; :top-status.sync=&quot;topStatus&quot;</span><br><span class="line">                     @bottom-status-change=&quot;handleBottomChange&quot; :bottom-status.sync=&quot;bottomStatus&quot; :bottom-distance=30&gt;</span><br><span class="line">            &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">            &lt;div slot=&quot;top&quot; class=&quot;mint-loadmore-top&quot;&gt;</span><br><span class="line">                &lt;span class=&apos;refresh refresh-top&apos; v-show=&quot;topStatus !== &apos;loading&apos;&quot;</span><br><span class="line">                      :class=&quot;&#123; &apos;is-rotate&apos;: topStatus === &apos;drop&apos; &#125;&quot;&gt;↑&lt;/span&gt;</span><br><span class="line">                &lt;span v-show=&quot;topStatus === &apos;loading&apos;&quot; class=&quot;mint-spinner-snake&quot;&gt;&lt;/span&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div slot=&quot;bottom&quot; class=&quot;mint-loadmore-bottom&quot;&gt;</span><br><span class="line">                &lt;span class=&apos;refresh refresh-bottom&apos; v-show=&quot;bottomStatus !== &apos;loading&apos;&amp;&amp;bottomStatus==&apos;drop&apos;&quot;</span><br><span class="line">                      :class=&quot;&#123; &apos;is-rotate&apos;: bottomStatus === &apos;drop&apos; &#125;&quot;&gt;下&lt;/span&gt;</span><br><span class="line">                &lt;span v-show=&quot;bottomStatus === &apos;loading&apos;&quot; class=&quot;mint-spinner-snake&quot;&gt;&lt;/span&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/mt-loadmore&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        name: &apos;load-more&apos;,</span><br><span class="line">        props: [&apos;topService&apos;, &apos;bottomService&apos;],</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                topStatus: &apos;&apos;,</span><br><span class="line">                bottomStatus: &apos;&apos;,</span><br><span class="line">                allLoaded: false,</span><br><span class="line">                loadingStatus: &apos;&apos;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            handleTopChange(status) &#123;</span><br><span class="line">                this.topStatus = status;</span><br><span class="line">            &#125;,</span><br><span class="line">            handleBottomChange(status) &#123;</span><br><span class="line">                this.bottomStatus = status;</span><br><span class="line">            &#125;,</span><br><span class="line">            loadTop(params)&#123;</span><br><span class="line">                let vm = this;</span><br><span class="line">                vm.topService(params)</span><br><span class="line">                    .then(function (res) &#123;</span><br><span class="line">//                        setTimeout(() =&gt; &#123;  //这里可以通过延迟来控制loadding图标的显示时间</span><br><span class="line">                        vm.$refs.loadmore.onTopLoaded();</span><br><span class="line">//                        &#125;, 1500);</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .catch(function () &#123;</span><br><span class="line">                        vm.$refs.loadmore.onTopLoaded();</span><br><span class="line">                    &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">            loadBottom(params)&#123;</span><br><span class="line">                let vm = this;</span><br><span class="line">                vm.bottomService(params)</span><br><span class="line">                    .then(function (res) &#123;</span><br><span class="line">//                        setTimeout(() =&gt; &#123;</span><br><span class="line">                        if(res.data.last)&#123;</span><br><span class="line">                            vm.allLoaded = true;</span><br><span class="line">                        &#125;</span><br><span class="line">                        vm.$refs.loadmore.onBottomLoaded();</span><br><span class="line">//                        &#125;, 1500);</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .catch(function () &#123;</span><br><span class="line">                        vm.$refs.loadmore.onBottomLoaded();</span><br><span class="line">                    &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot; rel=&quot;stylesheet/scss&quot; scoped&gt;</span><br><span class="line">    .page-loadmore .mint-spinner &#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        vertical-align: middle;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .mint-loadmore-top span, .mint-loadmore-bottom span &#123;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        -webkit-transition: .2s linear;</span><br><span class="line">        transition: .2s linear;</span><br><span class="line">        vertical-align: middle</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .mint-loadmore-top span.is-rotate, .mint-loadmore-bottom span.is-rotate &#123;</span><br><span class="line">        -webkit-transform: rotate(180deg);</span><br><span class="line">        transform: rotate(180deg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .loadmore &#123;</span><br><span class="line">        overflow: scroll;</span><br><span class="line">        height: calc(100% - 46px);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .mint-spinner-snake &#123;</span><br><span class="line">        margin-top: 9px;</span><br><span class="line">        border-top-color: rgb(204, 204, 204);</span><br><span class="line">        border-left-color: rgb(204, 204, 204);</span><br><span class="line">        border-bottom-color: rgb(204, 204, 204);</span><br><span class="line">        height: 23px;</span><br><span class="line">        width: 23px;</span><br><span class="line">        -webkit-animation: mint-spinner-rotate .8s infinite linear;</span><br><span class="line">        animation: mint-spinner-rotate .8s infinite linear;</span><br><span class="line">        border-radius: 50%;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="调用时的案例模块如下"><a href="#调用时的案例模块如下" class="headerlink" title="调用时的案例模块如下"></a>调用时的案例模块如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	   &lt;load-more v-on:loadTop=&quot;loadTop&quot; v-on:loadBottom=&quot;loadBottom&quot;</span><br><span class="line">                              v-bind:topService=&quot;getTopList&quot;</span><br><span class="line">                              v-bind:bottomService=&quot;getBotList&quot;&gt;</span><br><span class="line">                     	&lt;div v-for=&apos;item in list&apos;&gt;</span><br><span class="line">                     		&#123;&#123;item.name&#125;&#125;</span><br><span class="line">                     	&lt;/div&gt;</span><br><span class="line">                   &lt;/load-more&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	    import loadMore from &apos;load-more.vue&apos;</span><br><span class="line">	    import &#123;taskService from &apos;server&apos;</span><br><span class="line">	        export default&#123;</span><br><span class="line">					components: &#123;</span><br><span class="line">           			&apos;load-more&apos;: loadMore</span><br><span class="line">       			&#125;,</span><br><span class="line">		        methods: &#123;</span><br><span class="line">					async getTopList()&#123;</span><br><span class="line">		                this.unfinished_page = 0;</span><br><span class="line">		                return this.getUnfishedList();</span><br><span class="line">		            &#125;,</span><br><span class="line">		            async getBotList()&#123;</span><br><span class="line">		                return this.getUnfishedList(1);</span><br><span class="line">		            &#125;,</span><br><span class="line">		            getUnfishedList (params)&#123;</span><br><span class="line">		                var vm = this;</span><br><span class="line">		                if (params) &#123;</span><br><span class="line">		                    vm.unfinished_page += 1;</span><br><span class="line">		                &#125;</span><br><span class="line">		                //发送请求部分</span><br><span class="line">		                var promise = taskService.finishedTaskList(&#123;page: vm.unfinished_page, size: 10&#125;);</span><br><span class="line">		                promise.then(res =&gt; &#123;</span><br><span class="line">		                    if (params) &#123;</span><br><span class="line">		                        vm.list = vm.list.concat(res.data.content);</span><br><span class="line">		                    &#125; else &#123;</span><br><span class="line">		                        vm.list = res.data.content;</span><br><span class="line">		                    &#125;</span><br><span class="line">		                &#125;, err =&gt; &#123;</span><br><span class="line">		                   console.log(err)</span><br><span class="line">		                &#125;);</span><br><span class="line">		                this.$nextTick(function () &#123;</span><br><span class="line">		                    this.scrollMode = &quot;touch&quot;;</span><br><span class="line">		                &#125;);</span><br><span class="line">		                return promise;</span><br><span class="line">		            &#125;,</span><br><span class="line">		              loadTop(data)&#123;</span><br><span class="line">		                this.data = data;</span><br><span class="line">		             &#125;,</span><br><span class="line">		             loadBottom(data)&#123;</span><br><span class="line">		                this.data = this.data.concat(data);</span><br><span class="line">		             &#125;,</span><br><span class="line">			 	&#125;，</span><br><span class="line">			 	data()&#123;</span><br><span class="line">			 		return&#123;</span><br><span class="line">			 			list:[&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,&#123;name:&apos;我&apos;,value:0&#125;,]</span><br><span class="line">			 		&#125;</span><br><span class="line">			 	&#125;,</span><br><span class="line">			    created()&#123;</span><br><span class="line">			    	this.getTopList();</span><br><span class="line">			    &#125;</span><br><span class="line">			&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
           
         
       
