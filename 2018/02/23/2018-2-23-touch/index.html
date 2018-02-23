@@ -73,6 +73,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="李二狗的博客" type="application/atom+xml" />
 
@@ -81,17 +83,17 @@
 
 
 
-<meta name="description" content="寻找狮子座女生">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://willxue.top/about/index.html">
+<meta name="description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于touch事件的封装">
+<meta property="og:url" content="http://willxue.top/2018/02/23/2018-2-23-touch/index.html">
 <meta property="og:site_name" content="李二狗的博客">
-<meta property="og:description" content="寻找狮子座女生">
+<meta property="og:description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;, function (e) &amp;#123;                e.preventDefault();">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-23T11:48:57.314Z">
+<meta property="og:updated_time" content="2018-02-23T01:46:41.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="寻找狮子座女生">
+<meta name="twitter:title" content="关于touch事件的封装">
+<meta name="twitter:description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;, function (e) &amp;#123;                e.preventDefault();">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://willxue.top/about/"/>
+  <link rel="canonical" href="http://willxue.top/2018/02/23/2018-2-23-touch/"/>
 
 
 
 
 
-  <title>about | 李二狗的博客</title>
+  <title>关于touch事件的封装 | 李二狗的博客</title>
   
 
 
@@ -241,33 +243,137 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://willxue.top/2018/02/23/2018-2-23-touch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liergou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李二狗的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">关于touch事件的封装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-23T09:45:24+08:00">
+                2018-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var startX, startY, moveEndX, moveEndY, X, Y;</span><br><span class="line">            $(&apos;.date-right-content&apos;).on(&apos;touchstart&apos;, function (e) &#123;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">                startX = e.originalEvent.changedTouches[0].pageX;</span><br><span class="line">                startY = e.originalEvent.changedTouches[0].pageY;</span><br><span class="line">            &#125;);</span><br><span class="line">            $(&apos;.date-right-content&apos;).on(&quot;touchend&quot;, function (e) &#123;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">                moveEndX = e.originalEvent.changedTouches[0].pageX;</span><br><span class="line">                moveEndY = e.originalEvent.changedTouches[0].pageY;</span><br><span class="line">                X = moveEndX - startX;</span><br><span class="line">                Y = moveEndY - startY;</span><br><span class="line">                if (Math.abs(Y) &gt; Math.abs(X) &amp;&amp; Y &gt; 0) &#123;</span><br><span class="line">                    console.log(Y);</span><br><span class="line">                &#125; else if (Math.abs(Y) &gt; Math.abs(X) &amp;&amp; Y &lt; 0) &#123;</span><br><span class="line">                    console.log(Y);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/23/2017-11-23-map/" rel="next" title="关于vue中引入地图API的封装">
+                <i class="fa fa-chevron-left"></i> 关于vue中引入地图API的封装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
