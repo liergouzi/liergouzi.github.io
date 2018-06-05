@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;">
+<meta name="description" content="百度 首先安装依赖 blob-to-buffer、 baidu-aip-sdk  12345678910111213141516npm install blob-to-buffernpm install baidu-aip-sdk使用代码如下var AipSpeechClient = nodeRequire(&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于touch事件的封装">
-<meta property="og:url" content="http://willxue.top/2018/02/23/2018-2-23-touch/index.html">
+<meta property="og:title" content="使用NodeJS 百度Api和腾讯Api实现语音识别">
+<meta property="og:url" content="http://willxue.top/2018/06/05/2018-06-05-语言识别/index.html">
 <meta property="og:site_name" content="李二狗的博客">
-<meta property="og:description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;, function (e) &amp;#123;                e.preventDefault();">
+<meta property="og:description" content="百度 首先安装依赖 blob-to-buffer、 baidu-aip-sdk  12345678910111213141516npm install blob-to-buffernpm install baidu-aip-sdk使用代码如下var AipSpeechClient = nodeRequire(&amp;quot;baidu-aip-sdk&amp;quot;).speech;var toBuffe">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-23T01:46:41.397Z">
+<meta property="og:updated_time" content="2018-06-05T07:24:36.390Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于touch事件的封装">
-<meta name="twitter:description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;, function (e) &amp;#123;                e.preventDefault();">
+<meta name="twitter:title" content="使用NodeJS 百度Api和腾讯Api实现语音识别">
+<meta name="twitter:description" content="百度 首先安装依赖 blob-to-buffer、 baidu-aip-sdk  12345678910111213141516npm install blob-to-buffernpm install baidu-aip-sdk使用代码如下var AipSpeechClient = nodeRequire(&amp;quot;baidu-aip-sdk&amp;quot;).speech;var toBuffe">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://willxue.top/2018/02/23/2018-2-23-touch/"/>
+  <link rel="canonical" href="http://willxue.top/2018/06/05/2018-06-05-语言识别/"/>
 
 
 
 
 
-  <title>关于touch事件的封装 | 李二狗的博客</title>
+  <title>使用NodeJS 百度Api和腾讯Api实现语音识别 | 李二狗的博客</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://willxue.top/2018/02/23/2018-2-23-touch/">
+    <link itemprop="mainEntityOfPage" href="http://willxue.top/2018/06/05/2018-06-05-语言识别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liergou">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于touch事件的封装</h1>
+          <h1 class="post-title" itemprop="name headline">使用NodeJS 百度Api和腾讯Api实现语音识别</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-23T09:45:24+08:00">
-                2018-02-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-05T15:10:13+08:00">
+                2018-06-05
               </time>
             
 
@@ -320,7 +320,17 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var startX, startY, moveEndX, moveEndY, X, Y;</span><br><span class="line">            $(&apos;.date-right-content&apos;).on(&apos;touchstart&apos;, function (e) &#123;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">                startX = e.originalEvent.changedTouches[0].pageX;</span><br><span class="line">                startY = e.originalEvent.changedTouches[0].pageY;</span><br><span class="line">            &#125;);</span><br><span class="line">            $(&apos;.date-right-content&apos;).on(&quot;touchend&quot;, function (e) &#123;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">                moveEndX = e.originalEvent.changedTouches[0].pageX;</span><br><span class="line">                moveEndY = e.originalEvent.changedTouches[0].pageY;</span><br><span class="line">                X = moveEndX - startX;</span><br><span class="line">                Y = moveEndY - startY;</span><br><span class="line">                if (Math.abs(Y) &gt; Math.abs(X) &amp;&amp; Y &gt; 0) &#123;</span><br><span class="line">                    console.log(Y);</span><br><span class="line">                &#125; else if (Math.abs(Y) &gt; Math.abs(X) &amp;&amp; Y &lt; 0) &#123;</span><br><span class="line">                    console.log(Y);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+        <h2 id="百度"><a href="#百度" class="headerlink" title="百度"></a>百度</h2><blockquote>
+<p>首先安装依赖 blob-to-buffer、 baidu-aip-sdk</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">npm install blob-to-buffer</span><br><span class="line">npm install baidu-aip-sdk</span><br><span class="line"></span><br><span class="line">使用代码如下</span><br><span class="line">var AipSpeechClient = nodeRequire(&quot;baidu-aip-sdk&quot;).speech;</span><br><span class="line">var toBuffer = nodeRequire(&apos;blob-to-buffer&apos;);</span><br><span class="line"></span><br><span class="line">toBuffer(Blob, function (err, buffer) &#123;</span><br><span class="line">    if (err) throw err</span><br><span class="line">    var client = new AipSpeechClient(APP_ID, API_KEY, SECRET_KEY);</span><br><span class="line">    client.recognize(buffer, &apos;pcm&apos;, 16000).then(function (result) &#123;</span><br><span class="line">      console.log(&quot;百度---------&quot; + result.result);</span><br><span class="line">    &#125;, function (err) &#123;</span><br><span class="line">      console.log(err);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="腾讯"><a href="#腾讯" class="headerlink" title="腾讯"></a>腾讯</h2><blockquote>
+<p>首先安装依赖 blob-to-buffer、 qqai-api-sdk</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">npm install blob-to-buffer</span><br><span class="line">npm install baidu-aip-sdk</span><br><span class="line"></span><br><span class="line">使用代码如下</span><br><span class="line">var AipSpeechClient = nodeRequire(&quot;baidu-aip-sdk&quot;).speech;</span><br><span class="line">var toBuffer = nodeRequire(&apos;blob-to-buffer&apos;);</span><br><span class="line"></span><br><span class="line">const APP = &#123;</span><br><span class="line">    appkey: &apos;xxx&apos;,</span><br><span class="line">    appid: &apos;xxx&apos;</span><br><span class="line">&#125;;</span><br><span class="line">let speech = &apos;&apos;;</span><br><span class="line">speech = speech || new Speech(APP.appkey, APP.appid);</span><br><span class="line">toBuffer(Blob, function (err, buffer) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var speech_data = buffer.toString(&apos;base64&apos;);</span><br><span class="line">    speech.asr(&#123;</span><br><span class="line">        speech: speech_data,</span><br><span class="line">        format: 2,</span><br><span class="line">        rate: 16000</span><br><span class="line">    &#125;).then(function (res) &#123;</span><br><span class="line">        console.log(&apos;腾讯---------&apos; + res.data.text);</span><br><span class="line">    &#125;);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>上文中Blob是指录音文件的Blob对象</p>
+<p>腾讯Api参考地址：<a href="https://www.npmjs.com/package/qqai-api-sdk" target="_blank" rel="noopener">https://www.npmjs.com/package/qqai-api-sdk</a></p>
+
       
     </div>
     
@@ -344,8 +354,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/23/2017-11-23-map/" rel="next" title="关于vue中引入地图API的封装">
-                <i class="fa fa-chevron-left"></i> 关于vue中引入地图API的封装
+              <a href="/2018/03/30/2018-03-30-quirks&strict/" rel="next" title="浏览器标准模式和怪异模式之间的区别">
+                <i class="fa fa-chevron-left"></i> 浏览器标准模式和怪异模式之间的区别
               </a>
             
           </div>
@@ -354,8 +364,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/30/2018-03-30-quirks&strict/" rel="prev" title="浏览器标准模式和怪异模式之间的区别">
-                浏览器标准模式和怪异模式之间的区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/05/2018-06-05-js获取麦克风录音/" rel="prev" title="使用js调用麦克风并录音">
+                使用js调用麦克风并录音 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -408,8 +418,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -460,6 +479,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#百度"><span class="nav-number">1.</span> <span class="nav-text">百度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯"><span class="nav-number">2.</span> <span class="nav-text">腾讯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

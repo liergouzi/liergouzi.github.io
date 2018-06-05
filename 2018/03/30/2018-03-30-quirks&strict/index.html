@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;">
+<meta name="description" content="由于历史的原因，不同浏览器对页面的渲染是不同的，甚至同一浏览器的不同版本也是不同的。在W3C标准出台之前，不同的浏览器在页面的渲染上没有同一的规范，产生了差异，即Quirks mode(怪异模式或兼容模式)；当W3C标准出台之后，不同浏览器对页面的渲染有了统一的标准,即Strict mode（标准模式或严格模式）；这就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于touch事件的封装">
-<meta property="og:url" content="http://willxue.top/2018/02/23/2018-2-23-touch/index.html">
+<meta property="og:title" content="浏览器标准模式和怪异模式之间的区别">
+<meta property="og:url" content="http://willxue.top/2018/03/30/2018-03-30-quirks&strict/index.html">
 <meta property="og:site_name" content="李二狗的博客">
-<meta property="og:description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;, function (e) &amp;#123;                e.preventDefault();">
+<meta property="og:description" content="由于历史的原因，不同浏览器对页面的渲染是不同的，甚至同一浏览器的不同版本也是不同的。在W3C标准出台之前，不同的浏览器在页面的渲染上没有同一的规范，产生了差异，即Quirks mode(怪异模式或兼容模式)；当W3C标准出台之后，不同浏览器对页面的渲染有了统一的标准,即Strict mode（标准模式或严格模式）；这就是两者之间的区别 W3C标准推出前，旧的页面都是根据旧的渲染方式对页面进行渲染">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-23T01:46:41.397Z">
+<meta property="og:updated_time" content="2018-03-30T02:33:57.208Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于touch事件的封装">
-<meta name="twitter:description" content="123456789101112131415161718var startX, startY, moveEndX, moveEndY, X, Y;            $(&amp;apos;.date-right-content&amp;apos;).on(&amp;apos;touchstart&amp;apos;, function (e) &amp;#123;                e.preventDefault();">
+<meta name="twitter:title" content="浏览器标准模式和怪异模式之间的区别">
+<meta name="twitter:description" content="由于历史的原因，不同浏览器对页面的渲染是不同的，甚至同一浏览器的不同版本也是不同的。在W3C标准出台之前，不同的浏览器在页面的渲染上没有同一的规范，产生了差异，即Quirks mode(怪异模式或兼容模式)；当W3C标准出台之后，不同浏览器对页面的渲染有了统一的标准,即Strict mode（标准模式或严格模式）；这就是两者之间的区别 W3C标准推出前，旧的页面都是根据旧的渲染方式对页面进行渲染">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://willxue.top/2018/02/23/2018-2-23-touch/"/>
+  <link rel="canonical" href="http://willxue.top/2018/03/30/2018-03-30-quirks&strict/"/>
 
 
 
 
 
-  <title>关于touch事件的封装 | 李二狗的博客</title>
+  <title>浏览器标准模式和怪异模式之间的区别 | 李二狗的博客</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://willxue.top/2018/02/23/2018-2-23-touch/">
+    <link itemprop="mainEntityOfPage" href="http://willxue.top/2018/03/30/2018-03-30-quirks&strict/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liergou">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于touch事件的封装</h1>
+          <h1 class="post-title" itemprop="name headline">浏览器标准模式和怪异模式之间的区别</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-23T09:45:24+08:00">
-                2018-02-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-30T10:22:05+08:00">
+                2018-03-30
               </time>
             
 
@@ -320,7 +320,31 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var startX, startY, moveEndX, moveEndY, X, Y;</span><br><span class="line">            $(&apos;.date-right-content&apos;).on(&apos;touchstart&apos;, function (e) &#123;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">                startX = e.originalEvent.changedTouches[0].pageX;</span><br><span class="line">                startY = e.originalEvent.changedTouches[0].pageY;</span><br><span class="line">            &#125;);</span><br><span class="line">            $(&apos;.date-right-content&apos;).on(&quot;touchend&quot;, function (e) &#123;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">                moveEndX = e.originalEvent.changedTouches[0].pageX;</span><br><span class="line">                moveEndY = e.originalEvent.changedTouches[0].pageY;</span><br><span class="line">                X = moveEndX - startX;</span><br><span class="line">                Y = moveEndY - startY;</span><br><span class="line">                if (Math.abs(Y) &gt; Math.abs(X) &amp;&amp; Y &gt; 0) &#123;</span><br><span class="line">                    console.log(Y);</span><br><span class="line">                &#125; else if (Math.abs(Y) &gt; Math.abs(X) &amp;&amp; Y &lt; 0) &#123;</span><br><span class="line">                    console.log(Y);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>由于历史的原因，不同浏览器对页面的渲染是不同的，甚至同一浏览器的不同版本也是不同的。在W3C标准出台之前，不同的浏览器在页面的渲染上没有同一的规范，产生了差异，即Quirks mode(怪异模式或兼容模式)；当W3C标准出台之后，不同浏览器对页面的渲染有了统一的标准,即Strict mode（标准模式或严格模式）；这就是两者之间的区别</p>
+<p>W3C标准推出前，旧的页面都是根据旧的渲染方式对页面进行渲染的，因此在W3C标准推出后为了保证旧页面的正常显示，保持浏览器的兼容性，这样浏览器上就产生了能够兼容W3C标准渲染的严格模式和保证旧页面显示的怪异模式的标准兼容模式。</p>
+</blockquote>
+<h2 id="标准模式与怪异模式的两个常见区别"><a href="#标准模式与怪异模式的两个常见区别" class="headerlink" title="标准模式与怪异模式的两个常见区别"></a>标准模式与怪异模式的两个常见区别</h2><ul>
+<li><p>盒模型的处理差异<br>  标准CSS盒模型的宽度和高度等于内容区的高度和宽度，不包含内边距和边框，而IE6之前的浏览器实现的盒模型的宽高计算方式是包含内边距和边框的。因此，对于IE，怪异模式和标准模式下的盒模型宽高计算方式是不一样的；</p>
+</li>
+<li><p>行内元素的垂直对齐<br>  很多早期的浏览器对齐图片至包含它们的盒子的下边框，虽然CSS的规范要求它们被对齐至盒内文本的基线。标准模式下，基于Gecko的浏览器将会对齐至基线，而在quirks模式下它们会对齐至底部。最直接的例子就是图片的显示。在标准模式下，图片并不是与父元素的下边框对齐的，如果仔细观察，你会发现图片与父元素下边框之间存在一点小空隙。那是因为标准模式下，图片是基线对齐的。而怪异模式下，则不存在这个问题。</p>
+</li>
+<li><p>可以设置行内元素的高宽<br>  在Standards模式下，给span等行内元素设置wdith和height都不会生效，而在quirks模式下，则会生效。</p>
+</li>
+<li><p>可设置百分比的高度<br>  在standards模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置高度，子元素设置一个百分比的高度是无效的。</p>
+</li>
+<li><p>用margin:0 auto设置水平居中在IE下会失效</p>
+<p>  使用margin:0 auto在standards模式下可以使元素水平居中，但在quirks模式下却会失效,quirk模式下的解决办法，用text-align属性:</p>
+<p> <code>body{text-align:center};#content{text-align:left}</code></p>
+</li>
+<li><p>quirk模式下设置图片的padding会失效</p>
+</li>
+<li><p>quirk模式下Table中的字体属性不能继承上层的设置</p>
+</li>
+<li><p>quirk模式下white-space:pre会失效</p>
+</li>
+</ul>
+
       
     </div>
     
@@ -344,8 +368,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/23/2017-11-23-map/" rel="next" title="关于vue中引入地图API的封装">
-                <i class="fa fa-chevron-left"></i> 关于vue中引入地图API的封装
+              <a href="/2018/02/23/2018-2-23-touch/" rel="next" title="关于touch事件的封装">
+                <i class="fa fa-chevron-left"></i> 关于touch事件的封装
               </a>
             
           </div>
@@ -354,8 +378,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/30/2018-03-30-quirks&strict/" rel="prev" title="浏览器标准模式和怪异模式之间的区别">
-                浏览器标准模式和怪异模式之间的区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/05/2018-06-05-语言识别/" rel="prev" title="使用NodeJS 百度Api和腾讯Api实现语音识别">
+                使用NodeJS 百度Api和腾讯Api实现语音识别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -408,8 +432,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -460,6 +493,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准模式与怪异模式的两个常见区别"><span class="nav-number">1.</span> <span class="nav-text">标准模式与怪异模式的两个常见区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
