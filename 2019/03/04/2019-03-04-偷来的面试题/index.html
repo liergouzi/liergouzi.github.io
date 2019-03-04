@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李二狗的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="(一).系统 32 位和 64 位的区别 1234567891011121314一、支持的内存不同32位的操作系统，最多支持4G的内存，实际内存为3.25G；64位系统支持4G 8G 16G 32G 64G 128G 256G内存，理论上可以无限支持，只要你主板上有足够的内存条。二、支持的处理器不同64位的操作系统支持">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某个技术群看到的面试题，整理一下">
+<meta property="og:url" content="http://willxue.top/2019/03/04/2019-03-04-偷来的面试题/index.html">
+<meta property="og:site_name" content="李二狗的博客">
+<meta property="og:description" content="(一).系统 32 位和 64 位的区别 1234567891011121314一、支持的内存不同32位的操作系统，最多支持4G的内存，实际内存为3.25G；64位系统支持4G 8G 16G 32G 64G 128G 256G内存，理论上可以无限支持，只要你主板上有足够的内存条。二、支持的处理器不同64位的操作系统支持基于64位的处理器，而32位的系统却不能完全支持64位的处理器三、支持的软件不">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-04T03:48:01.767Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="某个技术群看到的面试题，整理一下">
+<meta name="twitter:description" content="(一).系统 32 位和 64 位的区别 1234567891011121314一、支持的内存不同32位的操作系统，最多支持4G的内存，实际内存为3.25G；64位系统支持4G 8G 16G 32G 64G 128G 256G内存，理论上可以无限支持，只要你主板上有足够的内存条。二、支持的处理器不同64位的操作系统支持基于64位的处理器，而32位的系统却不能完全支持64位的处理器三、支持的软件不">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://willxue.top/2019/03/04/2019-03-04-偷来的面试题/"/>
+
+
+
+
+
+  <title>某个技术群看到的面试题，整理一下 | 李二狗的博客</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-9700XXXXXXXXXXXXXX', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ace6dXXXXXXXXXXfbc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李二狗的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，爱你同样无止境</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://willxue.top/2019/03/04/2019-03-04-偷来的面试题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liergou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李二狗的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">某个技术群看到的面试题，整理一下</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-04T09:43:38+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>(一).系统 32 位和 64 位的区别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">一、支持的内存不同</span><br><span class="line">32位的操作系统，最多支持4G的内存，实际内存为3.25G；64位系统支持4G 8G 16G 32G 64G 128G 256G内存，理论上可以无限支持，只要你主板上有足够的内存条。</span><br><span class="line"></span><br><span class="line">二、支持的处理器不同</span><br><span class="line">64位的操作系统支持基于64位的处理器，而32位的系统却不能完全支持64位的处理器</span><br><span class="line"></span><br><span class="line">三、支持的软件不同</span><br><span class="line">32位的操作系统，支持基于32位的软件，不能运行64位的软件；而64位的系统一般这两种类型的都支持，基本上与各种软件都兼容，特别是adobe公司的软件，现在的新版本的都只支持64位。</span><br><span class="line"></span><br><span class="line">四、处理数据的能力</span><br><span class="line">32和64表示CPU可以处理最大位数，一次性的运算量不一样，理论上64位的会比32位快1倍，内存寻址也不一样。</span><br><span class="line"></span><br><span class="line">五、系统体积大小</span><br><span class="line">64位系统都比32位系统大的多,比如win7 64位比win7 32位系统大700M左右</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>（二）前端在图片方面的使用问题</p>
+<p>  <a href="https://github.com/LiangJunrong/document-library/blob/master/other-library/Interview/KnowledgePoints/Other-%E5%9B%BE%E7%89%87.md" target="_blank" rel="noopener">参考github图片详细介绍</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">1 GIF</span><br><span class="line"></span><br><span class="line">先简单说一下GIF吧，GIF是一种正在逐渐被抛弃的图片格式。PNG格式的出现就是为了替代它。PNG 8除了不支持动画外，PNG8有GIF所有的特点，但是比GIF更加具有优势的是它支持alpha透明和更优的压缩（GIF仅支持索引透明）。</span><br><span class="line"></span><br><span class="line">但是gif在网上还是有一席之地的，比如在贴吧或者qq群里常看到的动画图片，用的都是gif。</span><br><span class="line"></span><br><span class="line">当图片颜色简单到一定程度，大小小到一定程度的时候，gif格式图片大小要小于png8。比如一个1*1像素的纯黑色点，在PNG8下是124byte，在GIF下是43byte。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">2 JPG</span><br><span class="line"></span><br><span class="line">优缺点：</span><br><span class="line"></span><br><span class="line">支持摄影图像或写实图像的高级压缩，并且可利用压缩比例控制图像文件大小。</span><br><span class="line">有损压缩会使图像数据质量下降，并且在编辑和重新保存JPG格式图像时，这种下降损失会累积。</span><br><span class="line">JPG和PNG8都适合颜色较少的图片，因为JPG在栅格化时精确记录少数点，其它点用差值补齐。但是当图像颜色数少于一定值比如256的时候，PNG8可能更合适</span><br><span class="line">JPG不适合具有大块颜色相近的区域或亮度(&quot;锐度&quot;)差异十分明显的较简单的图片。</span><br><span class="line">JPG在存储摄影或写实图像一般能达到最佳的压缩效果，比如网站的背景图，轮播图，用户头像等等。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">3 PNG</span><br><span class="line"></span><br><span class="line">这里PNG放在最后说，PNG可以细分为三种格式:PNG8，PNG24，PNG32。</span><br><span class="line"></span><br><span class="line">后面的数字代表这种PNG格式最多可以索引和存储的颜色值。”8″代表2的8次方也就是256色，而24则代表2的24次方大概有1600多万色。</span><br><span class="line"></span><br><span class="line">关于透明：</span><br><span class="line"></span><br><span class="line">PNG8支持索引透明和alpha透明</span><br><span class="line">PNG24不支持透明;</span><br><span class="line">而PNG32在24位的PNG基础上增加了8位（256阶）的alpha通道透明，也就是说可以存储从完全透明到完全不透明一共256个层级的透明度（即所谓的半透明）。</span><br><span class="line">你可能要问了，我保存是PNG-24格式，为什么还有透明呢？</span><br><span class="line"></span><br><span class="line">其实在你勾选了透明度选项之后，你保存的格式就是PNG-32了，只是ps没有提示你罢了。</span><br><span class="line"></span><br><span class="line">优缺点：</span><br><span class="line"></span><br><span class="line">能在保证最不失真的情况下尽可能压缩图像文件的大小。</span><br><span class="line">PNG用来存储灰度图像时，灰度图像的深度可多到16位，存储彩色图像时，彩色图像的深度可多到48位，并且还可存储多到16位的α通道数据。</span><br><span class="line">对于需要高保真的较复杂的图像，PNG虽然能无损压缩，但图片文件较大，不适合应用在Web页面上。</span><br><span class="line"></span><br><span class="line">使用规范：</span><br><span class="line"></span><br><span class="line">1，少用图片元素，尽量用css3代替</span><br><span class="line"></span><br><span class="line">比如圆角，提示框，不会二次渲染的元素的阴影。关于css3的filter属性，在移动端并不推荐使用，虽然会节省图片的空间，但是  1、渲染会消耗性能，导致页面加载反而变慢；2、andorid系统在4.0以上版本才支持。</span><br><span class="line"></span><br><span class="line">2，尽量少用png32格式，太大了=。=</span><br><span class="line"></span><br><span class="line">在某些情况下，如果损失一定的视觉可以获得性能较大的提升，可以和设计师协商去掉一些效果。</span><br><span class="line"></span><br><span class="line">3， JPG适合摄影图像或写实图像，同时也适合颜色较少图像；</span><br><span class="line"></span><br><span class="line">　　PNG8 适合所含颜色很少(少于256)、具有大块颜色相近的区域或亮度差异十分明显的较简单的图片；</span><br><span class="line"></span><br><span class="line">　　PNG32适合图片较为复杂且有透明效果且透明效果无法用css来实现的情况。</span><br><span class="line"></span><br><span class="line">4， 如果页面中有较多的小icon，首先考虑使用webfont,如果webfont不能满足需求，必须使用css sprite将图片合并，来压缩总体图片的大小，同时减少页面请求提高访问速度。</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/05/2018-06-05-js获取麦克风录音/" rel="next" title="使用js调用麦克风并录音">
+                <i class="fa fa-chevron-left"></i> 使用js调用麦克风并录音
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Liergou</p>
+              <p class="site-description motion-element" itemprop="description">github账号： liergouzi</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liergou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
